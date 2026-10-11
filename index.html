@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Kanta Skopje</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Unbounded:wght@600;700;800&display=swap">
+<style>
+/* Layout: a gallery that alternates walnut-dark and cream-paper bands, full bleed, sharp-edged tiles;
+   the app's map badges are the "product photography". One committed look, by choice. */
+:root{
+  color-scheme:dark;
+  --walnut:#100904; --bark:#1A110A; --bark-2:#2A1C12; --cork:#40372E;
+  --cream:#FFEDD7; --cream-dim:#B5A592;
+  --paper:#FBF3E7; --paper-2:#F3E6D3; --paper-line:#DCC9AE; --ink:#1B1008; --ink-dim:#66584A;
+  --phosphor:#3ECF8E; --emerald:#006239; --gold:#FAAE33; --ember:#DC5000; --chili:#D1255C; --ok:#15935E; --grey:#8A7D6E;
+  --display:'Unbounded','Arial Black',system-ui,sans-serif;
+  --text:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --gutter:clamp(16px,4vw,56px);
+}
+*{box-sizing:border-box}
+body{background:var(--walnut);color:var(--cream);font:500 16px/1.6 var(--text);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3,p{margin:0}
+.band{padding-inline:var(--gutter);padding-block:clamp(56px,9vw,120px)}
+.dark{background:var(--walnut);color:var(--cream);--line:var(--cork);--dim:var(--cream-dim);--act:var(--phosphor);--on-act:var(--walnut)}
+.light{background:var(--paper);color:var(--ink);--line:var(--paper-line);--dim:var(--ink-dim);--act:var(--emerald);--on-act:var(--paper)}
+.wrap{max-width:1240px;margin-inline:auto}
+.eyebrow{font:800 11px/1.4 var(--text);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);display:flex;align-items:center;gap:14px}
+.eyebrow::after{content:"";flex:1;border-top:1px dashed var(--line)}
+.display{font:800 clamp(38px,6.2vw,82px)/.92 var(--display);letter-spacing:-.035em;text-transform:uppercase;text-wrap:balance}
+.h2{font:800 clamp(30px,5.6vw,68px)/.95 var(--display);letter-spacing:-.03em;text-transform:uppercase;text-wrap:balance}
+.h3{font:700 clamp(17px,2vw,22px)/1.15 var(--display);letter-spacing:-.015em}
+.lede{font-size:clamp(17px,1.7vw,21px);line-height:1.5;max-width:34em;color:var(--dim)}
+.pill{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;font:800 13px/1 var(--text);letter-spacing:.09em;text-transform:uppercase;text-decoration:none;border:1px solid transparent;cursor:pointer;background:none;color:inherit}
+.pill.solid{background:var(--act);color:var(--on-act)}
+.pill.ghost{border-color:color-mix(in srgb,currentColor 55%,transparent)}
+.pill:focus-visible,.chip:focus-visible,.lang button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex:none}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--walnut) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px dashed var(--cork);padding-inline:var(--gutter)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px}
+.mark{display:flex;align-items:center;gap:10px;font:800 15px/1 var(--display);letter-spacing:-.02em;text-transform:uppercase;text-decoration:none}
+.mark svg{width:30px;height:30px}
+.lang{display:flex;gap:4px;border:1px solid var(--cork);border-radius:999px;padding:3px}
+.lang button{min-width:44px;min-height:36px;border:0;border-radius:999px;background:none;color:var(--cream-dim);font:800 11px/1 var(--text);letter-spacing:.1em;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--gold);color:var(--walnut)}
+
+/* hero */
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(24px,5vw,72px);align-items:end}
+.hero .copy{display:grid;gap:clamp(18px,2.4vw,30px);min-width:0}
+.hero .display{overflow-wrap:anywhere}
+@media (max-width:860px){.hero .display{font-size:clamp(38px,10.5vw,72px)}}
+.hero .display .a{color:var(--phosphor)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.phone{justify-self:center;width:min(100%,330px);aspect-ratio:9/18.5;border:1px solid var(--cork);border-radius:38px;padding:9px;background:var(--bark)}
+.phone svg{width:100%;height:100%;display:block;border-radius:30px}
+@keyframes fix{0%,42%{opacity:1}50%,92%{opacity:0}100%{opacity:1}}
+@keyframes fixed{0%,42%{opacity:0}50%,92%{opacity:1}100%{opacity:0}}
+.phone .is-full{animation:fix 7s ease-in-out infinite}
+.phone .is-ok{animation:fixed 7s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.phone .is-full{animation:none;opacity:1}.phone .is-ok{animation:none;opacity:0}}
+
+/* numbers */
+.nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px dashed var(--cork);border-bottom:1px dashed var(--cork);margin-top:clamp(40px,6vw,80px)}
+.nums div{padding:22px 16px 22px 0;display:grid;gap:6px}
+.nums div+div{padding-left:16px;border-left:1px dashed var(--cork)}
+.nums b{font:800 clamp(24px,3.6vw,44px)/1 var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.nums span{font:800 11px/1.35 var(--text);letter-spacing:.12em;text-transform:uppercase;color:var(--cream-dim)}
+
+/* three tiles: sharp-edged, full bleed */
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--ink)}
+.tile{display:grid;grid-template-rows:auto 1fr;gap:28px;padding:clamp(22px,3vw,44px) var(--gutter) clamp(28px,4vw,56px);min-width:0}
+.tile+.tile{border-left:1px solid var(--ink)}
+.tile .art{width:clamp(96px,13vw,168px);aspect-ratio:1}
+.tile .art svg{width:100%;height:100%}
+.tile .txt{display:grid;gap:10px;align-content:end}
+.tile p{color:var(--ink-dim);max-width:30em}
+.light.flush{padding:0}
+.light .head{padding:clamp(56px,8vw,104px) var(--gutter) clamp(28px,4vw,48px)}
+.light .head .wrap{display:grid;gap:20px}
+
+/* legend */
+.legend .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,5vw,72px);align-items:center}
+.stage{aspect-ratio:1;max-width:420px;width:100%;justify-self:center;border:1px dashed var(--cork);border-radius:50%;display:grid;place-items:center}
+.stage svg{width:62%;height:62%}
+.legend .side{display:grid;gap:22px;min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:48px;padding:0 20px;border-radius:999px;border:1px solid var(--cork);background:none;color:var(--cream);font:800 13px/1 var(--text);letter-spacing:.09em;text-transform:uppercase;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--walnut)}
+.legend .say{min-height:5.2em;color:var(--cream-dim);font-size:clamp(16px,1.6vw,19px);max-width:30em}
+
+/* features */
+.feat .wrap{display:grid;gap:clamp(28px,4vw,48px)}
+.list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,5vw,72px)}
+.list li{list-style:none;display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;padding:20px 0;border-top:1px dashed var(--line)}
+.list{margin:0;padding:0}
+.list .n{font:800 12px/1.9 var(--text);letter-spacing:.1em;color:var(--emerald);font-variant-numeric:tabular-nums}
+.list p{color:var(--ink-dim)}
+.list b{display:block;color:var(--ink);font:700 16px/1.3 var(--display);letter-spacing:-.01em;margin-bottom:4px}
+
+/* privacy */
+.priv .wrap{display:grid;gap:clamp(28px,4vw,52px)}
+.rings{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,3vw,36px)}
+.ring{display:grid;gap:14px;align-content:start;min-width:0}
+.ring i{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--phosphor);display:grid;place-items:center}
+.ring i svg{width:24px;height:24px;stroke:var(--phosphor);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.ring p{color:var(--cream-dim);font-size:15px}
+
+footer{background:var(--walnut);border-top:1px dashed var(--cork);padding-inline:var(--gutter);padding-block:36px 48px;color:var(--cream-dim);font-size:14px}
+footer .wrap{display:grid;gap:14px;max-width:1240px}
+footer strong{color:var(--cream);font:800 clamp(28px,6vw,72px)/1 var(--display);letter-spacing:-.03em;text-transform:uppercase}
+
+@media (max-width:860px){
+  .hero .wrap,.legend .wrap{grid-template-columns:minmax(0,1fr)}
+  .phone{width:min(78%,300px)}
+  .nums{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nums div:nth-child(3){padding-left:0;border-left:0}
+  .nums div:nth-child(n+3){border-top:1px dashed var(--cork)}
+  .tiles{grid-template-columns:minmax(0,1fr)}
+  .tile{grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto;align-items:center}
+  .tile+.tile{border-left:0;border-top:1px solid var(--ink)}
+  .list{grid-template-columns:minmax(0,1fr)}
+  .rings{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stage{max-width:260px}
+}
+</style>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Kanta">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="24" fill="#006239"/><g id="mk"></g></svg>
+      <span data-i="brand">Kanta</span>
+    </a>
+    <div class="lang" role="group" aria-label="Language">
+      <button id="lang-mk" type="button" data-lang="mk" aria-pressed="false">МК</button>
+      <button id="lang-sq" type="button" data-lang="sq" aria-pressed="false">SQ</button>
+      <button id="lang-en" type="button" data-lang="en" aria-pressed="true">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<section class="band dark hero">
+  <div class="wrap">
+    <div class="copy">
+      <p class="eyebrow" data-i="eyebrow">Skopje · every bin and container on one map</p>
+      <h1 class="display"><span data-i="h1a">Full container?</span> <span class="a" data-i="h1b">20 seconds.</span></h1>
+      <p class="lede" data-i="lede">One photo, one tap. Kanta finds the container you are standing next to, puts your report on the map, and shows you the nearest one with space.</p>
+      <div class="cta">
+        <span class="pill solid"><span class="dot"></span><span data-i="soon">Coming to Google Play</span></span>
+        <a class="pill ghost" href="#how" data-i="how">See how it works</a>
+      </div>
+    </div>
+    <div class="phone" aria-hidden="true">
+      <svg viewBox="0 0 180 370" preserveAspectRatio="xMidYMid slice">
+        <rect width="180" height="370" fill="#100904"/>
+        <path d="M-10 70 L200 40 M-10 190 L200 160 M-10 300 L200 285 M40 -10 L70 380 M120 -10 L150 380" stroke="#2E2015" stroke-width="9" fill="none"/>
+        <path d="M-10 130 L200 105 M-10 245 L200 225 M85 -10 L105 380" stroke="#241810" stroke-width="5" fill="none"/>
+        <path d="M130 200 q26 -8 44 14 v60 h-44z" fill="#161C10"/>
+        <g id="map"></g>
+        <rect y="292" width="180" height="78" rx="18" fill="#1A110A" stroke="#40372E"/>
+        <rect x="78" y="300" width="24" height="3" rx="1.5" fill="#40372E"/>
+        <g font-family="Manrope,sans-serif" font-weight="800" font-size="6.2" letter-spacing=".6" text-anchor="middle" fill="#FFEDD7">
+          <rect x="10" y="312" width="50" height="44" rx="9" fill="none" stroke="#40372E"/><circle cx="35" cy="327" r="8" fill="none" stroke="#DC5000" stroke-width="1.2"/><text x="35" y="349" data-i="t-full">FULL</text>
+          <rect x="65" y="312" width="50" height="44" rx="9" fill="none" stroke="#40372E"/><circle cx="90" cy="327" r="8" fill="none" stroke="#D1255C" stroke-width="1.2"/><text x="90" y="349" data-i="t-report">REPORT</text>
+          <rect x="120" y="312" width="50" height="44" rx="9" fill="none" stroke="#40372E"/><circle cx="145" cy="327" r="8" fill="none" stroke="#3ECF8E" stroke-width="1.2"/><text x="145" y="349" data-i="t-suggest">SUGGEST</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="nums">
+      <div><b>6,300+</b><span data-i="n1">bins and containers on the map</span></div>
+      <div><b>10</b><span data-i="n2">municipalities of Skopje</span></div>
+      <div><b>20 s</b><span data-i="n3">from photo to report</span></div>
+      <div><b>3</b><span data-i="n4">languages: MK · SQ · EN</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="light flush" id="how">
+  <div class="head"><div class="wrap">
+    <p class="eyebrow" data-i="e2">How it works</p>
+    <h2 class="h2" data-i="h2">Spot it. Report it. Watch it get fixed.</h2>
+  </div></div>
+  <div class="tiles">
+    <article class="tile"><div class="art" data-badge="big,full"></div><div class="txt"><h3 class="h3" data-i="s1t">Spot a full or damaged container</h3><p data-i="s1p">Open the map. Every container in the city is there, in the colour of its state.</p></div></article>
+    <article class="tile"><div class="art" data-badge="big,broken"></div><div class="txt"><h3 class="h3" data-i="s2t">Report it in 20 seconds</h3><p data-i="s2p">Camera first, three taps. When a neighbour confirms it, the marker changes for everyone, and for the city.</p></div></article>
+    <article class="tile"><div class="art" data-badge="big,ok"></div><div class="txt"><h3 class="h3" data-i="s3t">Watch the city fix it</h3><p data-i="s3p">You get a quiet "Fixed!" notice with before and after photos when it is emptied or repaired.</p></div></article>
+  </div>
+</section>
+
+<section class="band dark legend">
+  <div class="wrap">
+    <div class="stage" id="stage" aria-hidden="true"></div>
+    <div class="side">
+      <p class="eyebrow" data-i="e3">Read the map</p>
+      <h2 class="h2" data-i="h3">One badge, one state.</h2>
+      <div class="chips" role="group" aria-label="Status">
+        <button class="chip" id="c-ok" type="button" data-s="big,ok" aria-pressed="true" data-i="k-ok">OK</button>
+        <button class="chip" id="c-full" type="button" data-s="big,full" aria-pressed="false" data-i="k-full">Full</button>
+        <button class="chip" id="c-broken" type="button" data-s="big,broken" aria-pressed="false" data-i="k-broken">Damaged</button>
+        <button class="chip" id="c-missing" type="button" data-s="big,missing" aria-pressed="false" data-i="k-missing">Missing</button>
+        <button class="chip" id="c-small" type="button" data-s="small,ok" aria-pressed="false" data-i="k-small">Street bin</button>
+      </div>
+      <p class="say" id="say" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section class="band light feat">
+  <div class="wrap">
+    <p class="eyebrow" data-i="e4">What you can do</p>
+    <ul class="list">
+      <li><span class="n">01</span><p><b data-i="f1t">Find the nearest container with space</b><span data-i="f1p">Within 600 m, with walking time and directions, the moment yours is full.</span></p></li>
+      <li><span class="n">02</span><p><b data-i="f2t">Confirm what neighbours reported</b><span data-i="f2p">"Me too" or "It's been emptied". The map stays honest because people check it.</span></p></li>
+      <li><span class="n">03</span><p><b data-i="f3t">Suggest a new container</b><span data-i="f3p">Mark a spot Skopje needs one, and vote for other people's suggestions.</span></p></li>
+      <li><span class="n">04</span><p><b data-i="f4t">Map your street</b><span data-i="f4p">Add a container that is missing from the map, or mark one that is gone.</span></p></li>
+      <li><span class="n">05</span><p><b data-i="f5t">City stats</b><span data-i="f5p">How quickly each municipality fixes problems. Data, not blame.</span></p></li>
+      <li><span class="n">06</span><p><b data-i="f6t">Works offline</b><span data-i="f6p">No signal at the container? The report is kept and sent when you are back online.</span></p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="band dark priv">
+  <div class="wrap">
+    <p class="eyebrow" data-i="e5">Private by design</p>
+    <h2 class="h2" data-i="h5">Your photo helps. Your name stays yours.</h2>
+    <div class="rings">
+      <div class="ring"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="4"/><path d="M5 20c1.5-3.5 4-5 7-5s5.500 1.500 7 5M3 3l18 18"/></svg></i><h3 class="h3" data-i="p1t">Faces blurred</h3><p data-i="p1p">On your phone, before the photo is sent. Hidden photo data, GPS included, is removed.</p></div>
+      <div class="ring"><i><svg viewBox="0 0 24 24"><path d="M4 12h16M12 4v16"/><circle cx="12" cy="12" r="9"/></svg></i><h3 class="h3" data-i="p2t">"A neighbour"</h3><p data-i="p2p">That is all other people ever see. Your name and email are never shown.</p></div>
+      <div class="ring"><i><svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M4 8l8 6 8-6"/></svg></i><h3 class="h3" data-i="p3t">No password</h3><p data-i="p3p">Browse without an account. To report, sign in with your email and a 6-digit code.</p></div>
+      <div class="ring"><i><svg viewBox="0 0 24 24"><path d="M5 7h14M9 7V5h6v2M7 7l1 12h8l1-12"/></svg></i><h3 class="h3" data-i="p4t">Delete anytime</h3><p data-i="p4p">In Settings. Your reports stay on the map, anonymously. No ads.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <strong data-i="brand2">Kanta</strong>
+    <p data-i="foot1">Kanta is an independent community project. It is not an official app of the City of Skopje, its municipalities or any public utility company.</p>
+    <p data-i="foot2">Map data © OpenStreetMap contributors · Mapillary · City of Skopje GIS portal · OpenFreeMap.</p>
+  </div>
+</footer>
+
+<script>
+// The app's own map badges, drawn from the same geometry as the Android markers.
+const C={ok:'#15935E',small:'#FAAE33',full:'#DC5000',broken:'#D1255C',missing:'#8A7D6E'};
+function glyph(kind,status,ink,cut){
+  const full=status==='full',crack=status==='broken';
+  let s='';
+  if(kind==='big'){
+    if(full)s+=`<circle cx="8.6" cy="6.400" r="2.600" fill="${ink}"/><circle cx="12.6" cy="5.200" r="3" fill="${ink}"/><circle cx="16.400" cy="6.600" r="2.300" fill="${ink}"/>`;
+    s+=`<rect x="4.200" y="9.200" width="15.6" height="9.6" rx="1.800" fill="${ink}"/>`;
+    s+=`<path d="M2.800 10.200Q3.200 6.800 7 6.800L17 6.800Q20.800 6.800 21.200 10.200Z" fill="${ink}" ${full?`stroke="${cut}" stroke-width="1.100"`:''}/>`;
+    s+=`<rect x="1.800" y="11" width="2.600" height="1.400" rx=".7" fill="${ink}"/><rect x="19.6" y="11" width="2.600" height="1.400" rx=".7" fill="${ink}"/>`;
+    s+=[8.6,12,15.4].filter(x=>!(crack&&x===12)).map(x=>`<path d="M${x} 11.800V16.600" stroke="${cut}" stroke-width="1.300" stroke-linecap="round"/>`).join('');
+    if(crack)s+=`<path d="M12.6 9.6L10.6 11.700L13.200 13.800L11 15.900L12.400 18" fill="none" stroke="${cut}" stroke-width="1.500" stroke-linecap="round" stroke-linejoin="round"/>`;
+    s+=`<circle cx="7.200" cy="20.900" r="1.800" fill="${ink}"/><circle cx="16.800" cy="20.900" r="1.800" fill="${ink}"/>`;
+  }else{
+    s+=`<path d="M7.200 10.400L16.800 10.400L15.900 20.200Q15.800 21.200 14.800 21.200L9.200 21.200Q8.200 21.200 8.100 20.200Z" fill="${ink}"/>`;
+    s+=`<path d="M5.800 10.800Q5.800 6.600 12 6.600Q18.200 6.600 18.200 10.800Z" fill="${ink}"/><rect x="10.500" y="4.800" width="3" height="2.200" rx="1" fill="${ink}"/>`;
+    s+=`<path d="M12 12.800V18.600" stroke="${cut}" stroke-width="1.300" stroke-linecap="round"/>`;
+  }
+  return s;
+}
+function badge(kind,status,ring){
+  const col=status==='ok'?(kind==='small'?C.small:C.ok):C[status];
+  const missing=status==='missing';
+  const ink=missing?col:(kind==='small'&&status==='ok'?'#281006':'#FFF3E3');
+  const body=missing
+    ?`<circle cx="24" cy="24" r="20" fill="none" stroke="${col}" stroke-width="1.600" stroke-dasharray="3.500 3"/>`
+    :`<circle cx="24" cy="24" r="23" fill="${ring}"/><circle cx="24" cy="24" r="20" fill="${col}"/>`;
+  return body+`<g transform="translate(9.6 8.900) scale(1.200)" ${missing?'opacity=".6"':''}>${glyph(kind,status,ink,missing?ring:col)}</g>`;
+}
+const svg=(k,s,ring)=>`<svg viewBox="0 0 48 48">${badge(k,s,ring)}</svg>`;
+
+document.getElementById('mk').innerHTML=`<g transform="translate(9.6 8.900) scale(1.200)">${glyph('big','ok','#FFEDD7','#006239')}</g>`;
+document.querySelectorAll('[data-badge]').forEach(el=>{const [k,s]=el.dataset.badge.split(',');el.innerHTML=svg(k,s,'#FFFAF2')});
+
+// the phone's map
+const pts=[[38,60,'big','ok'],[132,96,'big','ok'],[62,150,'small','ok'],[150,150,'big','broken'],[30,232,'big','ok'],[112,262,'small','ok'],[150,48,'small','ok']];
+let m=pts.map(([x,y,k,s])=>`<g transform="translate(${x-11} ${y-11}) scale(.46)">${badge(k,s,'#100904')}</g>`).join('');
+m+=`<g transform="translate(73 187) scale(.72)"><g class="is-full">${badge('big','full','#100904')}</g><g class="is-ok">${badge('big','ok','#100904')}</g></g>`;
+document.getElementById('map').innerHTML=m;
+
+const T={
+en:{brand:'Kanta',brand2:'Kanta',eyebrow:'Skopje · every bin and container on one map',h1a:'Full container?',h1b:'20 seconds.',lede:'One photo, one tap. Kanta finds the container you are standing next to, puts your report on the map, and shows you the nearest one with space.',soon:'Coming to Google Play',how:'See how it works','t-full':'FULL','t-report':'REPORT','t-suggest':'SUGGEST',n1:'bins and containers on the map',n2:'municipalities of Skopje',n3:'from photo to report',n4:'languages: MK · SQ · EN',e2:'How it works',h2:'Spot it. Report it. Watch it get fixed.',s1t:'Spot a full or damaged container',s1p:'Open the map. Every container in the city is there, in the colour of its state.',s2t:'Report it in 20 seconds',s2p:'Camera first, three taps. When a neighbour confirms it, the marker changes for everyone, and for the city.',s3t:'Watch the city fix it',s3p:'You get a quiet "Fixed!" notice with before and after photos when it is emptied or repaired.',e3:'Read the map',h3:'One badge, one state.','k-ok':'OK','k-full':'Full','k-broken':'Damaged','k-missing':'Missing','k-small':'Street bin',e4:'What you can do',f1t:'Find the nearest container with space',f1p:'Within 600 m, with walking time and directions, the moment yours is full.',f2t:'Confirm what neighbours reported',f2p:'"Me too" or "It\'s been emptied". The map stays honest because people check it.',f3t:'Suggest a new container',f3p:'Mark a spot Skopje needs one, and vote for other people\'s suggestions.',f4t:'Map your street',f4p:'Add a container that is missing from the map, or mark one that is gone.',f5t:'City stats',f5p:'How quickly each municipality fixes problems. Data, not blame.',f6t:'Works offline',f6p:'No signal at the container? The report is kept and sent when you are back online.',e5:'Private by design',h5:'Your photo helps. Your name stays yours.',p1t:'Faces blurred',p1p:'On your phone, before the photo is sent. Hidden photo data, GPS included, is removed.',p2t:'"A neighbour"',p2p:'That is all other people ever see. Your name and email are never shown.',p3t:'No password',p3p:'Browse without an account. To report, sign in with your email and a 6-digit code.',p4t:'Delete anytime',p4p:'In Settings. Your reports stay on the map, anonymously. No ads.',foot1:'Kanta is an independent community project. It is not an official app of the City of Skopje, its municipalities or any public utility company.',foot2:'Map data © OpenStreetMap contributors · Mapillary · City of Skopje GIS portal · OpenFreeMap.',
+ say:{'big,ok':'Green: a big street container with no open reports.','big,full':'Orange, with bags over the lid: reported full and confirmed by a neighbour. Kanta shows you the nearest one with space.','big,broken':'Red, with a crack: damaged or burning. One report is enough.','big,missing':'A dashed, hollow ring: neighbours say this container is gone.','small,ok':'Gold with a dark drawing: a small street bin, for litter and not for bags.'}},
+mk:{brand:'Канта',brand2:'Канта',eyebrow:'Скопје · секоја канта и контејнер на една мапа',h1a:'Полн контејнер?',h1b:'20 секунди.',lede:'Една фотографија, еден допир. Канта го наоѓа контејнерот до кој стоиш, ја става пријавата на мапата и ти го покажува најблискиот со место.',soon:'Наскоро на Google Play',how:'Види како работи','t-full':'ПОЛН','t-report':'ПРИЈАВИ','t-suggest':'ПРЕДЛОЖИ',n1:'канти и контејнери на мапата',n2:'скопски општини',n3:'од фотографија до пријава',n4:'јазици: МК · SQ · EN',e2:'Како работи',h2:'Забележи. Пријави. Гледај како се решава.',s1t:'Забележи полн или оштетен контејнер',s1p:'Отвори ја мапата. Секој контејнер во градот е таму, во бојата на неговата состојба.',s2t:'Пријави за 20 секунди',s2p:'Прво камерата, три допира. Кога сосед ќе потврди, ознаката се менува за сите, па и за градот.',s3t:'Гледај како градот го решава',s3p:'Добиваш тивко известување „Решено!“ со фотографии пред и потоа кога ќе се испразни или поправи.',e3:'Читај ја мапата',h3:'Една ознака, една состојба.','k-ok':'Во ред','k-full':'Полн','k-broken':'Оштетен','k-missing':'Исчезнат','k-small':'Улична канта',e4:'Што можеш да правиш',f1t:'Најди го најблискиот контејнер со место',f1p:'До 600 м, со време на пешачење и насоки, штом твојот е полн.',f2t:'Потврди што пријавиле соседите',f2p:'„И јас“ или „Испразнет е“. Мапата останува точна затоа што луѓето ја проверуваат.',f3t:'Предложи нов контејнер',f3p:'Означи место каде Скопје има потреба и гласај за предлозите на другите.',f4t:'Мапирај ја твојата улица',f4p:'Додади контејнер што недостасува на мапата или означи еден што го нема.',f5t:'Статистика за градот',f5p:'Колку брзо секоја општина ги решава проблемите. Податоци, не обвинувања.',f6t:'Работи и без интернет',f6p:'Нема сигнал кај контејнерот? Пријавата се чува и се испраќа кога ќе имаш мрежа.',e5:'Приватноста на прво место',h5:'Твојата фотографија помага. Твоето име останува твое.',p1t:'Замаглени лица',p1p:'На твојот телефон, уште пред да се испрати. Скриените податоци, и GPS, се бришат.',p2t:'„Сосед“',p2p:'Само тоа го гледаат другите. Твоето име и е-пошта никогаш не се прикажуваат.',p3t:'Без лозинка',p3p:'Мапата ја гледаш без сметка. За пријава, најави се со е-пошта и код од 6 цифри.',p4t:'Избриши кога сакаш',p4p:'Во Поставки. Пријавите остануваат на мапата, анонимно. Без реклами.',foot1:'Канта е независен проект на заедницата. Не е официјална апликација на Град Скопје, на општините ниту на некое јавно комунално претпријатие.',foot2:'Податоци за мапата © соработници на OpenStreetMap · Mapillary · ГИС портал на Град Скопје · OpenFreeMap.',
+ say:{'big,ok':'Зелено: голем уличен контејнер без отворени пријави.','big,full':'Портокалово, со вреќи над капакот: пријавен како полн и потврден од сосед. Канта ти го покажува најблискиот со место.','big,broken':'Црвено, со пукнатина: оштетен или гори. Доволна е една пријава.','big,missing':'Испрекинат, празен круг: соседите велат дека контејнерот го нема.','small,ok':'Златно со темен цртеж: мала улична канта, за ситен отпад, не за вреќи.'}},
+sq:{brand:'Kanta',brand2:'Kanta',eyebrow:'Shkup · çdo kosh dhe kontejner në një hartë',h1a:'Kontejner plot?',h1b:'20 sekonda.',lede:'Një foto, një prekje. Kanta gjen kontejnerin pranë të cilit qëndron, e vendos raportimin në hartë dhe të tregon më të afërtin me vend.',soon:'Së shpejti në Google Play',how:'Shih si funksionon','t-full':'PLOT','t-report':'RAPORTO','t-suggest':'PROPOZO',n1:'kosha dhe kontejnerë në hartë',n2:'komuna të Shkupit',n3:'nga fotoja te raportimi',n4:'gjuhë: MK · SQ · EN',e2:'Si funksionon',h2:'Vëre. Raportoje. Shih si rregullohet.',s1t:'Vëre një kontejner plot ose të dëmtuar',s1p:'Hap hartën. Çdo kontejner i qytetit është aty, me ngjyrën e gjendjes së tij.',s2t:'Raportoje për 20 sekonda',s2p:'Së pari kamera, tri prekje. Kur një fqinj e konfirmon, shenja ndryshon për të gjithë, edhe për qytetin.',s3t:'Shih si e rregullon qyteti',s3p:'Merr një njoftim të qetë „U rregullua!“ me foto para dhe pas kur zbrazet ose riparohet.',e3:'Lexo hartën',h3:'Një shenjë, një gjendje.','k-ok':'Në rregull','k-full':'Plot','k-broken':'I dëmtuar','k-missing':'Mungon','k-small':'Kosh rruge',e4:'Çfarë mund të bësh',f1t:'Gjej kontejnerin më të afërt me vend',f1p:'Deri në 600 m, me kohën në këmbë dhe udhëzime, sapo i yti është plot.',f2t:'Konfirmo atë që raportuan fqinjët',f2p:'„Edhe unë“ ose „Është zbrazur“. Harta mbetet e saktë sepse njerëzit e kontrollojnë.',f3t:'Propozo një kontejner të ri',f3p:'Shëno një vend ku Shkupit i duhet dhe voto për propozimet e të tjerëve.',f4t:'Hartëzo rrugën tënde',f4p:'Shto një kontejner që mungon në hartë ose shëno një që nuk është më.',f5t:'Statistikat e qytetit',f5p:'Sa shpejt i zgjidh problemet secila komunë. Të dhëna, jo faje.',f6t:'Punon edhe pa internet',f6p:'Nuk ka sinjal te kontejneri? Raportimi ruhet dhe dërgohet kur të kesh rrjet.',e5:'Privatësia së pari',h5:'Fotoja jote ndihmon. Emri yt mbetet i yti.',p1t:'Fytyra të turbulluara',p1p:'Në telefonin tënd, para se fotoja të dërgohet. Të dhënat e fshehura, edhe GPS, fshihen.',p2t:'„Një fqinj“',p2p:'Vetëm këtë e shohin të tjerët. Emri dhe email-i yt nuk shfaqen kurrë.',p3t:'Pa fjalëkalim',p3p:'Hartën e sheh pa llogari. Për të raportuar, hyr me email dhe një kod me 6 shifra.',p4t:'Fshije kur të duash',p4p:'Te Cilësimet. Raportimet mbeten në hartë, në mënyrë anonime. Pa reklama.',foot1:'Kanta është një projekt i pavarur i komunitetit. Nuk është aplikacion zyrtar i Qytetit të Shkupit, i komunave apo i ndonjë ndërmarrjeje publike komunale.',foot2:'Të dhënat e hartës © kontribuuesit e OpenStreetMap · Mapillary · Portali GIS i Qytetit të Shkupit · OpenFreeMap.',
+ say:{'big,ok':'E gjelbër: kontejner i madh rruge pa raportime të hapura.','big,full':'Portokalli, me thasë mbi kapak: i raportuar plot dhe i konfirmuar nga një fqinj. Kanta të tregon më të afërtin me vend.','big,broken':'E kuqe, me të çarë: i dëmtuar ose po digjet. Mjafton një raportim.','big,missing':'Rreth i zbrazët me vija: fqinjët thonë se kontejneri nuk është më.','small,ok':'E artë me vizatim të errët: kosh i vogël rruge, për mbeturina të vogla, jo për thasë.'}}
+};
+let lang='en',sel='big,ok';
+function paint(){
+  const t=T[lang];
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i]').forEach(el=>{const v=t[el.dataset.i];if(v!==undefined)el.textContent=v});
+  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
+  const [k,s]=sel.split(',');
+  document.getElementById('stage').innerHTML=svg(k,s,'#100904');
+  document.getElementById('say').textContent=t.say[sel];
+  document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.s===sel)));
+}
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>{lang=b.dataset.lang;try{localStorage.setItem('kanta-lang',lang)}catch(e){}paint()}));
+document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{sel=c.dataset.s;paint()}));
+try{const s=localStorage.getItem('kanta-lang');if(s&&T[s])lang=s}catch(e){}
+paint();
+</script>
+
+</body>
+</html>
