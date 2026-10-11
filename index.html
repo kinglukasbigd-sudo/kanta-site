@@ -7,128 +7,132 @@
 </head>
 <body>
 <title>Kanta Skopje</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@500;700;800&family=Sofia+Sans+Extra+Condensed:wght@700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@600;700;800&family=Sofia+Sans:wght@500;700;800&display=swap">
 <style>
-/* Layout: a wall of street signs. Every block is a plate: 2px ink outline, cut 4-6px corners,
-   a hard offset block for anything you can press. Tokens are the Android app's, both themes. */
+/* Layout: soft, round, four colours. Sand page with dark-blue ink; three full-bleed bands in
+   dark green, burgundy and dark blue; orange is the one thing that calls for a tap.
+   Tokens are the Android app's, both themes. */
 :root{
-  --bg:#F1F3F6; --surface:#FFFFFF; --muted:#E3E7EE; --ink:#0B0D12; --dim:#525B6B; --line:#C6CDD8;
-  --brand:#1F3BFF; --on-brand:#FFFFFF; --hivis:#D9FF3D; --on-hivis:#0B0D12; --block:#0B0D12;
-  --map:#EDEFF3; --road:#FFFFFF; --road-2:#D9DEE7; --park:#DCE8DC;
-  --ok:#14A35C; --small:#FFC61A; --full:#FF5A1F; --broken:#E5194B; --grey:#7C8594;
-  --sign:'Sofia Sans Extra Condensed','Arial Narrow','Roboto Condensed',Impact,sans-serif;
+  --bg:#F6F2EB; --surface:#FFFDF9; --muted:#EBE4D8; --ink:#14254A; --dim:#566078; --line:#D8CFC0;
+  --brand:#14254A; --on-brand:#FFFDF9; --accent:#F26A1B; --on-accent:#0E1A36;
+  --map:#F1ECE3; --road:#FFFDF9; --road-2:#E2D9CA; --park:#DDE6D3;
+  --orange:#F26A1B; --green:#1F6B49; --burgundy:#8E1B3A; --blue:#14254A; --sand:#F6F2EB; --deep:#0E1A36;
+  --ok:#1F6B49; --small:#43A070; --full:#F26A1B; --broken:#9B1D3F; --grey:#8A8F9C;
+  --head:'Rubik',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   --text:'Sofia Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
-  --gutter:clamp(16px,4vw,56px); --stroke:2px; --lift:5px;
+  --gutter:clamp(16px,4vw,56px); --soft:0 14px 36px rgba(14,26,54,.14);
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0B0D12; --surface:#141821; --muted:#1F2531; --ink:#F1F3F6; --dim:#9CA6B8; --line:#363E4E;
-  --brand:#8097FF; --on-brand:#0B0D12; --block:#8097FF;
-  --map:#0B0D12; --road:#1B202B; --road-2:#242A37; --park:#0F1714; color-scheme:dark}}
+  --bg:#0C1630; --surface:#14213F; --muted:#1E2D52; --ink:#F6F2EB; --dim:#A6B0C8; --line:#34436B;
+  --brand:#FF8A3D; --on-brand:#0E1A36; --accent:#5BC293;
+  --map:#0C1630; --road:#1A294B; --road-2:#223358; --park:#0E2230; --blue:#070E20;
+  --soft:0 14px 36px rgba(0,0,0,.4); color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0B0D12; --surface:#141821; --muted:#1F2531; --ink:#F1F3F6; --dim:#9CA6B8; --line:#363E4E;
-  --brand:#8097FF; --on-brand:#0B0D12; --block:#8097FF;
-  --map:#0B0D12; --road:#1B202B; --road-2:#242A37; --park:#0F1714; color-scheme:dark}
+  --bg:#0C1630; --surface:#14213F; --muted:#1E2D52; --ink:#F6F2EB; --dim:#A6B0C8; --line:#34436B;
+  --brand:#FF8A3D; --on-brand:#0E1A36; --accent:#5BC293;
+  --map:#0C1630; --road:#1A294B; --road-2:#223358; --park:#0E2230; --blue:#070E20;
+  --soft:0 14px 36px rgba(0,0,0,.4); color-scheme:dark}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font:500 17px/1.55 var(--text);-webkit-font-smoothing:antialiased}
 a{color:inherit}
 h1,h2,h3,p,ul{margin:0;padding:0}
-.band{padding-inline:var(--gutter);padding-block:clamp(48px,8vw,104px)}
-.wrap{max-width:1200px;margin-inline:auto}
-.tag{display:flex;align-items:center;font:800 12px/1 var(--text);letter-spacing:.12em;text-transform:uppercase}
-.tag span{background:var(--ink);color:var(--bg);padding:7px 10px;border-radius:4px;flex:none;max-width:100%}
-.tag::after{content:"";flex:1;border-top:var(--stroke) solid var(--ink)}
-.sign{font-family:var(--sign);font-weight:900;text-transform:uppercase;letter-spacing:.005em;text-wrap:balance}
-.display{font-size:clamp(64px,12.5vw,176px);line-height:.84}
-.h2{font-size:clamp(48px,8vw,112px);line-height:.88}
-.h3{font:800 clamp(26px,2.8vw,34px)/1 var(--sign);letter-spacing:.01em;text-transform:uppercase}
-.hl{background:var(--hivis);color:var(--on-hivis);padding:0 .12em;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-.lede{font-size:clamp(18px,1.7vw,22px);line-height:1.45;max-width:32em;color:var(--dim)}
-.plate{border:var(--stroke) solid var(--ink);border-radius:6px;background:var(--surface)}
-.lift{box-shadow:var(--lift) var(--lift) 0 var(--block)}
-.btn{display:inline-flex;align-items:center;gap:10px;min-height:54px;padding:0 22px;border:var(--stroke) solid var(--ink);border-radius:4px;font:800 23px/1 var(--sign);letter-spacing:.04em;text-transform:uppercase;text-decoration:none;color:var(--ink);background:var(--surface)}
+.band{padding-inline:var(--gutter);padding-block:clamp(52px,8vw,108px)}
+.wrap{max-width:1180px;margin-inline:auto}
+.tag{display:flex;align-items:center;gap:10px;font:800 12px/1.3 var(--text);letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.tag::before{content:"";width:18px;height:7px;border-radius:99px;background:var(--orange);flex:none}
+.sign{font-family:var(--head);font-weight:800;letter-spacing:-.035em;text-wrap:balance}
+.display{font-size:clamp(46px,7.6vw,108px);line-height:1}
+.h2{font-size:clamp(34px,5vw,68px);line-height:1.04}
+.h3{font:700 clamp(19px,1.9vw,23px)/1.2 var(--head);letter-spacing:-.015em}
+.hl{background:var(--orange);color:var(--deep);padding:.02em .32em .08em;border-radius:99px}
+.lede{font-size:clamp(18px,1.7vw,21px);line-height:1.5;max-width:32em;color:var(--dim)}
+.plate{border-radius:28px;background:var(--surface)}
+.lift{box-shadow:var(--soft)}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:54px;padding:0 26px;border-radius:99px;font:600 17px/1 var(--head);text-decoration:none;color:var(--ink);background:var(--muted)}
 .btn.solid{background:var(--brand);color:var(--on-brand)}
-a.btn{transition:transform .12s,box-shadow .12s}
-a.btn:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--block)}
-.btn:focus-visible,.chip:focus-visible,.lang button:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
-.sq{width:10px;height:10px;background:var(--hivis);border:1.5px solid var(--on-brand);flex:none}
+.btn.lift{box-shadow:none}
+.btn.solid.lift{box-shadow:var(--soft)}
+a.btn{transition:transform .15s}
+a.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,.chip:focus-visible,.lang button:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.sq{width:10px;height:10px;border-radius:50%;background:var(--orange);flex:none}
 @media (prefers-reduced-motion:reduce){a.btn{transition:none}}
 
 /* nav */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:var(--stroke) solid var(--ink);padding-inline:var(--gutter)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
-.mark{display:flex;align-items:center;gap:10px;font:900 30px/1 var(--sign);letter-spacing:.03em;text-transform:uppercase;text-decoration:none}
-.mark svg{width:34px;height:34px}
-.lang{display:flex;border:var(--stroke) solid var(--ink);border-radius:4px;overflow:hidden;background:var(--surface)}
-.lang button{min-width:46px;min-height:40px;border:0;background:none;color:var(--ink);font:800 20px/1 var(--sign);letter-spacing:.05em;cursor:pointer}
-.lang button+button{border-left:var(--stroke) solid var(--ink)}
-.lang button[aria-pressed="true"]{background:var(--hivis);color:var(--on-hivis)}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(12px);padding-inline:var(--gutter)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px}
+.mark{display:flex;align-items:center;gap:10px;font:800 22px/1 var(--head);letter-spacing:-.03em;text-decoration:none}
+.mark svg{width:36px;height:36px}
+.lang{display:flex;gap:2px;border-radius:99px;padding:4px;background:var(--muted)}
+.lang button{min-width:46px;min-height:38px;border:0;border-radius:99px;background:none;color:var(--dim);font:600 14px/1 var(--head);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--brand);color:var(--on-brand)}
 
 /* hero */
-.hero{padding-block:clamp(32px,5vw,72px) clamp(40px,6vw,80px)}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:clamp(28px,5vw,72px);align-items:center}
+.hero{padding-block:clamp(28px,4vw,60px) clamp(44px,6vw,84px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(28px,5vw,72px);align-items:center}
 .hero .wrap.full{display:block}
 .hero .copy{display:grid;gap:clamp(18px,2.4vw,30px);min-width:0}
 .hero .display span{display:block}
-.hero .display .hl{display:inline-block;margin-top:.06em}
-.cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
-.phone{justify-self:center;width:min(100%,310px);aspect-ratio:9/18.5;border-radius:14px;padding:8px;background:var(--ink);box-shadow:8px 8px 0 var(--brand)}
-.phone svg{width:100%;height:100%;display:block;border-radius:8px}
+.hero .display .hl{display:inline-block;margin-top:.14em;margin-left:-.06em}
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.phone{justify-self:center;width:min(100%,310px);aspect-ratio:9/18.5;border-radius:46px;padding:10px;background:var(--deep);box-shadow:var(--soft)}
+.phone svg{width:100%;height:100%;display:block;border-radius:36px}
 @keyframes fix{0%,42%{opacity:1}50%,92%{opacity:0}100%{opacity:1}}
 @keyframes fixed{0%,42%{opacity:0}50%,92%{opacity:1}100%{opacity:0}}
-.phone .is-full{animation:fix 7s steps(1) infinite}
-.phone .is-ok{animation:fixed 7s steps(1) infinite}
+.phone .is-full{animation:fix 7s ease-in-out infinite}
+.phone .is-ok{animation:fixed 7s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.phone .is-full{animation:none;opacity:1}.phone .is-ok{animation:none;opacity:0}}
 .m-ground{fill:var(--map)}.m-road{stroke:var(--road)}.m-road2{stroke:var(--road-2)}.m-park{fill:var(--park)}
-.m-sheet{fill:var(--surface);stroke:var(--ink)}.m-ink{fill:var(--ink)}.m-tile{fill:var(--surface);stroke:var(--ink)}.m-txt{fill:var(--ink)}
-.pl-ring{fill:var(--ink)}.pl-shadow{fill:#000;opacity:.25}.pl-ground{fill:var(--surface)}
+.m-sheet{fill:var(--surface)}.m-handle{fill:var(--line)}.m-tile{fill:var(--muted)}.m-txt{fill:var(--ink)}.m-pill{fill:var(--surface)}.m-navy{fill:var(--brand)}
+.pl-ring{fill:var(--surface)}.pl-ground{fill:var(--surface)}
 
-/* numbers: one plate cut into four */
-.nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(36px,5vw,64px);overflow:hidden}
-.nums div{padding:18px 18px 20px;display:grid;gap:4px;min-width:0}
-.nums div+div{border-left:var(--stroke) solid var(--ink)}
-.nums b{font:900 clamp(40px,6vw,84px)/.9 var(--sign);font-variant-numeric:tabular-nums}
-.nums span{font:800 12px/1.35 var(--text);letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+/* numbers */
+.nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(36px,5vw,64px);padding:8px}
+.nums div{padding:18px 20px 20px;display:grid;gap:6px;min-width:0}
+.nums div+div{border-left:1px solid var(--line)}
+.nums b{font:800 clamp(32px,4.4vw,58px)/1 var(--head);letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.nums span{font:800 12px/1.35 var(--text);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
 
-/* how: three plates, a real sequence */
+/* how: three cards, a real sequence */
 .how .wrap,.feat .wrap,.priv .wrap{display:grid;gap:clamp(24px,3.6vw,44px)}
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,28px)}
-.step{display:grid;grid-template-rows:auto auto 1fr;gap:18px;padding:clamp(18px,2.4vw,28px);min-width:0;position:relative}
-.step .no{position:absolute;top:-2px;right:-2px;background:var(--ink);color:var(--bg);font:900 26px/1 var(--sign);padding:7px 12px;border-radius:0 6px 0 4px}
-.step .art{width:clamp(84px,10vw,124px);aspect-ratio:1}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,24px)}
+.step{display:grid;grid-template-rows:auto auto 1fr;gap:16px;padding:clamp(22px,2.6vw,32px);min-width:0;position:relative}
+.step .no{position:absolute;top:20px;right:20px;width:38px;height:38px;border-radius:50%;background:var(--muted);color:var(--ink);font:700 16px/38px var(--head);text-align:center}
+.step .art{width:clamp(84px,9vw,112px);aspect-ratio:1}
 .step .art svg,.stage svg{width:100%;height:100%;display:block;overflow:visible}
 .step p{color:var(--dim)}
 
-/* legend */
-.legend{background:var(--ink);color:var(--bg);--dim2:color-mix(in srgb,var(--bg) 72%,var(--ink))}
-.legend .wrap{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(28px,5vw,72px);align-items:center}
-.stage{aspect-ratio:1;max-width:340px;width:100%;justify-self:center;display:grid;place-items:center;background:var(--bg);border-radius:6px;padding:17%;box-shadow:8px 8px 0 var(--brand)}
+/* legend: the green band */
+.legend{background:var(--green);color:var(--sand)}
+.legend .wrap{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(28px,5vw,72px);align-items:center}
+.stage{aspect-ratio:1;max-width:320px;width:100%;justify-self:center;display:grid;place-items:center;background:var(--sand);border-radius:50%;padding:20%}
+.stage .pl-ring,.stage .pl-ground{fill:#FFFDF9}
 .legend .side{display:grid;gap:22px;min-width:0}
-.legend .tag span{background:var(--bg);color:var(--ink)}
-.legend .tag::after{border-color:var(--bg)}
-.chips{display:flex;flex-wrap:wrap;gap:10px}
-.chip{min-height:50px;padding:0 18px;border-radius:4px;border:var(--stroke) solid var(--bg);background:none;color:var(--bg);font:800 22px/1 var(--sign);letter-spacing:.04em;text-transform:uppercase;cursor:pointer}
-.chip[aria-pressed="true"]{background:var(--hivis);border-color:var(--hivis);color:var(--on-hivis)}
-.legend .chip:focus-visible{outline-color:var(--hivis)}
-.legend .say{min-height:4.8em;color:var(--dim2);font-size:clamp(17px,1.6vw,20px);max-width:30em}
+.legend .tag,.priv .tag,footer .tag{color:color-mix(in srgb,var(--sand) 78%,transparent)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:50px;padding:0 22px;border-radius:99px;border:0;background:color-mix(in srgb,var(--sand) 16%,transparent);color:var(--sand);font:600 16px/1 var(--head);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--orange);color:var(--deep)}
+.legend .chip:focus-visible{outline-color:var(--sand)}
+.legend .say{min-height:4.8em;color:color-mix(in srgb,var(--sand) 84%,transparent);font-size:clamp(17px,1.6vw,20px);max-width:30em}
 
-/* features: one plate cut into six */
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));list-style:none;overflow:hidden}
-.grid li{padding:clamp(18px,2.2vw,28px);display:grid;gap:8px;align-content:start;min-width:0;border-top:var(--stroke) solid var(--ink);border-left:var(--stroke) solid var(--ink);margin:-2px 0 0 -2px}
+/* features */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,18px);list-style:none}
+.grid li{padding:clamp(20px,2.2vw,28px);display:grid;gap:8px;align-content:start;min-width:0;background:var(--surface);border-radius:28px}
 .grid p{color:var(--dim)}
 
-/* privacy: the cobalt band */
-.priv{background:var(--brand);color:var(--on-brand)}
-.priv .tag span{background:var(--on-brand);color:var(--brand)}
-.priv .tag::after{border-color:var(--on-brand)}
+/* privacy: the burgundy band */
+.priv{background:var(--burgundy);color:var(--sand)}
 .four{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,2.6vw,32px)}
 .four div{display:grid;gap:12px;align-content:start;min-width:0}
-.four i{width:52px;height:52px;border-radius:4px;background:var(--hivis);border:var(--stroke) solid var(--on-hivis);display:grid;place-items:center}
-.four i svg{width:26px;height:26px;stroke:var(--on-hivis);fill:none;stroke-width:2;stroke-linecap:square;stroke-linejoin:miter}
+.four i{width:54px;height:54px;border-radius:50%;background:var(--sand);display:grid;place-items:center}
+.four i svg{width:26px;height:26px;stroke:var(--burgundy);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .four p{opacity:.86;font-size:16px}
 
-footer{background:var(--bg);border-top:var(--stroke) solid var(--ink);padding-inline:var(--gutter);padding-block:32px 48px;color:var(--dim);font-size:15px}
+/* footer: the dark-blue band */
+footer{background:var(--blue);color:color-mix(in srgb,var(--sand) 72%,transparent);padding-inline:var(--gutter);padding-block:clamp(40px,6vw,72px) 48px;font-size:15px}
 footer .wrap{display:grid;gap:12px}
-footer strong{color:var(--ink);font:900 clamp(96px,24vw,300px)/.8 var(--sign);text-transform:uppercase;letter-spacing:.01em;margin-bottom:8px}
+footer strong{color:var(--sand);font:800 clamp(64px,15vw,200px)/.9 var(--head);letter-spacing:-.05em;margin-bottom:12px}
+footer strong::after{content:"";display:inline-block;width:.2em;height:.2em;border-radius:50%;background:var(--orange);margin-left:.06em}
 footer p{max-width:60em}
 
 @media (max-width:900px){
@@ -136,13 +140,13 @@ footer p{max-width:60em}
   .phone{width:min(72%,280px)}
   .nums{grid-template-columns:repeat(2,minmax(0,1fr))}
   .nums div:nth-child(3){border-left:0}
-  .nums div:nth-child(n+3){border-top:var(--stroke) solid var(--ink)}
+  .nums div:nth-child(n+3){border-top:1px solid var(--line)}
   .steps{grid-template-columns:minmax(0,1fr)}
-  .step{grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:18px;row-gap:8px;padding-right:56px}
-  .step .art{grid-row:1/3;width:84px}
+  .step{grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:18px;row-gap:8px;padding-right:64px}
+  .step .art{grid-row:1/3;width:76px}
   .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .four{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .stage{max-width:230px}
+  .stage{max-width:220px}
 }
 @media (max-width:520px){.grid{grid-template-columns:minmax(0,1fr)}}
 </style>
@@ -150,7 +154,7 @@ footer p{max-width:60em}
 <header class="nav">
   <div class="wrap">
     <a class="mark" href="#top" aria-label="Kanta">
-      <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="1" y="1" width="46" height="46" rx="9" fill="#1F3BFF" stroke="#0B0D12" stroke-width="2" style="stroke:var(--ink)"/><g id="mk"></g></svg>
+      <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="24" fill="#F26A1B"/><g id="mk"></g></svg>
       <span data-i="brand">Kanta</span>
     </a>
     <div class="lang" role="group" aria-label="Language">
@@ -180,13 +184,13 @@ footer p{max-width:60em}
         <path class="m-road2" d="M-10 70 L200 40 M-10 190 L200 160 M-10 300 L200 285 M40 -10 L70 380 M120 -10 L150 380" stroke-width="9" fill="none"/>
         <path class="m-road" d="M-10 130 L200 105 M-10 245 L200 225 M85 -10 L105 380" stroke-width="5" fill="none"/>
         <g id="map"></g>
-        <rect class="m-ink" x="9" y="12" width="40" height="15" rx="2"/><text x="29" y="23" text-anchor="middle" font-family="'Sofia Sans Extra Condensed',sans-serif" font-weight="900" font-size="11" letter-spacing=".6" style="fill:var(--bg)">KANTA</text>
-        <rect class="m-sheet" x="-2" y="290" width="184" height="90" rx="5" stroke-width="1.6"/>
-        <rect class="m-ink" x="78" y="297" width="24" height="2.4"/>
-        <g font-family="'Sofia Sans Extra Condensed',sans-serif" font-weight="800" font-size="10" letter-spacing=".5" text-anchor="middle">
-          <rect class="m-tile" x="10" y="308" width="50" height="50" rx="3" stroke-width="1.4"/><rect x="26" y="315" width="18" height="18" rx="2" fill="#FF5A1F" style="stroke:var(--ink)" stroke-width="1.2"/><text class="m-txt" x="35" y="350" data-i="t-full">FULL</text>
-          <rect class="m-tile" x="65" y="308" width="50" height="50" rx="3" stroke-width="1.4"/><rect x="81" y="315" width="18" height="18" rx="2" fill="#E5194B" style="stroke:var(--ink)" stroke-width="1.2"/><text class="m-txt" x="90" y="350" data-i="t-report">REPORT</text>
-          <rect class="m-tile" x="120" y="308" width="50" height="50" rx="3" stroke-width="1.4"/><rect x="136" y="315" width="18" height="18" rx="2" fill="#1F3BFF" style="stroke:var(--ink)" stroke-width="1.2"/><text class="m-txt" x="145" y="350" data-i="t-suggest">SUGGEST</text>
+        <rect class="m-pill" x="9" y="11" width="44" height="17" rx="8.500"/><text x="31" y="23" text-anchor="middle" font-family="Rubik,sans-serif" font-weight="800" font-size="9" style="fill:var(--ink)">Kanta</text>
+        <rect class="m-sheet" x="0" y="288" width="180" height="100" rx="18"/>
+        <rect class="m-handle" x="78" y="296" width="24" height="3" rx="1.500"/>
+        <g font-family="Rubik,sans-serif" font-weight="600" font-size="6.6" text-anchor="middle">
+          <rect class="m-tile" x="10" y="308" width="50" height="50" rx="12"/><circle cx="35" cy="325" r="9.500" fill="#F26A1B"/><text class="m-txt" x="35" y="349" data-i="t-full">FULL</text>
+          <rect class="m-tile" x="65" y="308" width="50" height="50" rx="12"/><circle cx="90" cy="325" r="9.500" fill="#9B1D3F"/><text class="m-txt" x="90" y="349" data-i="t-report">REPORT</text>
+          <rect class="m-tile" x="120" y="308" width="50" height="50" rx="12"/><circle cx="145" cy="325" r="9.500" fill="#14254A" class="m-navy"/><text class="m-txt" x="145" y="349" data-i="t-suggest">SUGGEST</text>
         </g>
       </svg>
     </div>
@@ -268,39 +272,33 @@ footer p{max-width:60em}
 </footer>
 
 <script>
-// The app's own map plates, drawn from the same geometry as the Android markers.
-const C={ok:'#14A35C',small:'#FFC61A',full:'#FF5A1F',broken:'#E5194B',missing:'#7C8594'};
+// The app's own map markers: a disc, and a two-shape drawing — a lid and a cup — from the same
+// geometry as the Android markers.
+const C={ok:'#1F6B49',small:'#43A070',full:'#F26A1B',broken:'#9B1D3F',missing:'#8A8F9C'};
 function glyph(kind,status,ink,cut){
-  const full=status==='full',crack=status==='broken';
+  const big=kind==='big',full=status==='full',crack=status==='broken';
+  const h=big?6.2:3.9,l=big?8:5.4,top=10.4,bot=big?18.4:19.4,r=big?3.4:3.9;
   let s='';
-  if(kind==='big'){
-    if(full)s+=`<circle cx="8.6" cy="6.400" r="2.600" fill="${ink}"/><circle cx="12.6" cy="5.200" r="3" fill="${ink}"/><circle cx="16.400" cy="6.600" r="2.300" fill="${ink}"/>`;
-    s+=`<rect x="4.200" y="9.200" width="15.6" height="9.6" rx="1.800" fill="${ink}"/>`;
-    s+=`<path d="M2.800 10.200Q3.200 6.800 7 6.800L17 6.800Q20.800 6.800 21.200 10.200Z" fill="${ink}" ${full?`stroke="${cut}" stroke-width="1.100"`:''}/>`;
-    s+=`<rect x="1.800" y="11" width="2.600" height="1.400" rx=".7" fill="${ink}"/><rect x="19.6" y="11" width="2.600" height="1.400" rx=".7" fill="${ink}"/>`;
-    s+=[8.6,12,15.4].filter(x=>!(crack&&x===12)).map(x=>`<path d="M${x} 11.800V16.600" stroke="${cut}" stroke-width="1.300" stroke-linecap="round"/>`).join('');
-    if(crack)s+=`<path d="M12.6 9.6L10.6 11.700L13.200 13.800L11 15.900L12.400 18" fill="none" stroke="${cut}" stroke-width="1.500" stroke-linecap="round" stroke-linejoin="round"/>`;
-    s+=`<circle cx="7.200" cy="20.900" r="1.800" fill="${ink}"/><circle cx="16.800" cy="20.900" r="1.800" fill="${ink}"/>`;
-  }else{
-    s+=`<path d="M7.200 10.400L16.800 10.400L15.900 20.200Q15.800 21.200 14.800 21.200L9.200 21.200Q8.200 21.200 8.100 20.200Z" fill="${ink}"/>`;
-    s+=`<path d="M5.800 10.800Q5.800 6.600 12 6.600Q18.200 6.600 18.200 10.800Z" fill="${ink}"/><rect x="10.500" y="4.800" width="3" height="2.200" rx="1" fill="${ink}"/>`;
-    s+=`<path d="M12 12.800V18.600" stroke="${cut}" stroke-width="1.300" stroke-linecap="round"/>`;
+  if(full){
+    s+=`<circle cx="12" cy="${top-.9}" r="${h-1.5}" fill="${ink}"/>`;
+    s+=`<path d="M${12-h-1} ${top-.75}H${12+h+1}" stroke="${cut}" stroke-width="1.500" stroke-linecap="round"/>`;
   }
+  s+=`<path d="M${12-h+.9} ${top}H${12+h-.9}a.9 .9 0 0 1 .9 .9V${bot-r}a${r} ${r} 0 0 1 -${r} ${r}H${12-h+r}a${r} ${r} 0 0 1 -${r} -${r}V${top+.9}a.9 .9 0 0 1 .9 -.9Z" fill="${ink}"/>`;
+  if(!full)s+=`<rect x="${12-l}" y="6.200" width="${l*2}" height="2.500" rx="1.250" fill="${ink}" ${crack?`transform="rotate(-16 ${12-l} 8)"`:''}/>`;
+  if(crack)s+=`<path d="M13.600 ${top-.4}L10.400 ${bot+.4}" stroke="${cut}" stroke-width="1.500" stroke-linecap="round"/>`;
   return s;
 }
-
 function badge(kind,status){
   const col=status==='ok'?(kind==='small'?C.small:C.ok):C[status];
   const missing=status==='missing';
-  const ink=missing?col:(kind==='small'&&status==='ok'?'#0B0D12':'#FFFFFF');
   const body=missing
-    ?`<rect class="pl-ground" x="4" y="4" width="40" height="40" rx="7" opacity=".8"/><rect x="4" y="4" width="40" height="40" rx="7" fill="none" stroke="${col}" stroke-width="2" stroke-dasharray="4 3.200"/>`
-    :`<rect class="pl-shadow" x="4" y="4" width="46" height="46" rx="9"/><rect class="pl-ring" x="1" y="1" width="46" height="46" rx="9"/><rect x="4.500" y="4.500" width="39" height="39" rx="6" fill="${col}"/>`;
-  return body+`<g transform="translate(9.6 8.900) scale(1.200)" ${missing?'opacity=".6"':''}>${glyph(kind,status,ink,missing?'transparent':col)}</g>`;
+    ?`<circle class="pl-ground" cx="24" cy="24" r="20" opacity=".8"/><circle cx="24" cy="24" r="20" fill="none" stroke="${col}" stroke-width="2" stroke-dasharray="4 3.200"/>`
+    :`<circle cx="24" cy="25.200" r="23" fill="#0E1A36" opacity=".18"/><circle class="pl-ring" cx="24" cy="24" r="23"/><circle cx="24" cy="24" r="20" fill="${col}"/>`;
+  return body+`<g transform="translate(8 8) scale(1.333)" ${missing?'opacity=".6"':''}>${glyph(kind,status,missing?col:'#FFFDF9',missing?'transparent':col)}</g>`;
 }
-const svg=(k,s)=>`<svg viewBox="0 0 51 51">${badge(k,s)}</svg>`;
+const svg=(k,s)=>`<svg viewBox="0 0 48 50">${badge(k,s)}</svg>`;
 
-document.getElementById('mk').innerHTML=`<g transform="translate(9.6 8.900) scale(1.200)">${glyph('big','ok','#FFFFFF','#1F3BFF')}</g>`;
+document.getElementById('mk').innerHTML=`<g transform="translate(8 8) scale(1.333)">${glyph('big','ok','#FFFDF9','#F26A1B')}</g>`;
 document.querySelectorAll('[data-badge]').forEach(el=>{const [k,s]=el.dataset.badge.split(',');el.innerHTML=svg(k,s)});
 
 // the phone's map
@@ -311,11 +309,11 @@ document.getElementById('map').innerHTML=m;
 
 const T={
 en:{brand:'Kanta',brand2:'Kanta',eyebrow:'Skopje · every bin and container on one map',h1a:'Full container?',h1b:'20 seconds.',lede:'One photo, one tap. Kanta finds the container you are standing next to, puts your report on the map, and shows you the nearest one with space.',soon:'Coming to Google Play',how:'See how it works','t-full':'FULL','t-report':'REPORT','t-suggest':'SUGGEST',n1:'bins and containers on the map',n2:'municipalities of Skopje',n3:'from photo to report',n4:'languages: MK · SQ · EN',e2:'How it works',h2:'Spot it. Report it. Watch it get fixed.',s1t:'Spot a full or damaged container',s1p:'Open the map. Every container in the city is there, in the colour of its state.',s2t:'Report it in 20 seconds',s2p:'Camera first, three taps. When a neighbour confirms it, the marker changes for everyone, and for the city.',s3t:'Watch the city fix it',s3p:'You get a quiet "Fixed!" notice with before and after photos when it is emptied or repaired.',e3:'Read the map',h3:'One badge, one state.','k-ok':'OK','k-full':'Full','k-broken':'Damaged','k-missing':'Missing','k-small':'Street bin',e4:'What you can do',f1t:'Find the nearest container with space',f1p:'Within 600 m, with walking time and directions, the moment yours is full.',f2t:'Confirm what neighbours reported',f2p:'"Me too" or "It\'s been emptied". The map stays honest because people check it.',f3t:'Suggest a new container',f3p:'Mark a spot Skopje needs one, and vote for other people\'s suggestions.',f4t:'Map your street',f4p:'Add a container that is missing from the map, or mark one that is gone.',f5t:'City stats',f5p:'How quickly each municipality fixes problems. Data, not blame.',f6t:'Works offline',f6p:'No signal at the container? The report is kept and sent when you are back online.',e5:'Private by design',h5:'Your photo helps. Your name stays yours.',p1t:'Faces blurred',p1p:'On your phone, before the photo is sent. Hidden photo data, GPS included, is removed.',p2t:'"A neighbour"',p2p:'That is all other people ever see. Your name and email are never shown.',p3t:'No password',p3p:'Browse without an account. To report, sign in with your email and a 6-digit code.',p4t:'Delete anytime',p4p:'In Settings. Your reports stay on the map, anonymously. No ads.',foot1:'Kanta is an independent community project. It is not an official app of the City of Skopje, its municipalities or any public utility company.',foot2:'Map data © OpenStreetMap contributors · Mapillary · City of Skopje GIS portal · OpenFreeMap.',
- say:{'big,ok':'Green: a big street container with no open reports.','big,full':'Orange, with bags over the lid: reported full and confirmed by a neighbour. Kanta shows you the nearest one with space.','big,broken':'Red, with a crack: damaged or burning. One report is enough.','big,missing':'A dashed, hollow plate: neighbours say this container is gone.','small,ok':'Yellow with a dark drawing: a small street bin, for litter and not for bags.'}},
+ say:{'big,ok':'Green: a big street container with no open reports.','big,full':'Orange, heaped over the rim: reported full and confirmed by a neighbour. Kanta shows you the nearest one with space.','big,broken':'Burgundy, lid knocked off: damaged or burning. One report is enough.','big,missing':'A dashed, empty ring: neighbours say this container is gone.','small,ok':'Lighter green, a narrow drawing: a small street bin, for litter and not for bags.'}},
 mk:{brand:'Канта',brand2:'Канта',eyebrow:'Скопје · секоја канта и контејнер на една мапа',h1a:'Полн контејнер?',h1b:'20 секунди.',lede:'Една фотографија, еден допир. Канта го наоѓа контејнерот до кој стоиш, ја става пријавата на мапата и ти го покажува најблискиот со место.',soon:'Наскоро на Google Play',how:'Види како работи','t-full':'ПОЛН','t-report':'ПРИЈАВИ','t-suggest':'ПРЕДЛОЖИ',n1:'канти и контејнери на мапата',n2:'скопски општини',n3:'од фотографија до пријава',n4:'јазици: МК · SQ · EN',e2:'Како работи',h2:'Забележи. Пријави. Гледај како се решава.',s1t:'Забележи полн или оштетен контејнер',s1p:'Отвори ја мапата. Секој контејнер во градот е таму, во бојата на неговата состојба.',s2t:'Пријави за 20 секунди',s2p:'Прво камерата, три допира. Кога сосед ќе потврди, ознаката се менува за сите, па и за градот.',s3t:'Гледај како градот го решава',s3p:'Добиваш тивко известување „Решено!“ со фотографии пред и потоа кога ќе се испразни или поправи.',e3:'Читај ја мапата',h3:'Една ознака, една состојба.','k-ok':'Во ред','k-full':'Полн','k-broken':'Оштетен','k-missing':'Исчезнат','k-small':'Улична канта',e4:'Што можеш да правиш',f1t:'Најди го најблискиот контејнер со место',f1p:'До 600 м, со време на пешачење и насоки, штом твојот е полн.',f2t:'Потврди што пријавиле соседите',f2p:'„И јас“ или „Испразнет е“. Мапата останува точна затоа што луѓето ја проверуваат.',f3t:'Предложи нов контејнер',f3p:'Означи место каде Скопје има потреба и гласај за предлозите на другите.',f4t:'Мапирај ја твојата улица',f4p:'Додади контејнер што недостасува на мапата или означи еден што го нема.',f5t:'Статистика за градот',f5p:'Колку брзо секоја општина ги решава проблемите. Податоци, не обвинувања.',f6t:'Работи и без интернет',f6p:'Нема сигнал кај контејнерот? Пријавата се чува и се испраќа кога ќе имаш мрежа.',e5:'Приватноста на прво место',h5:'Твојата фотографија помага. Твоето име останува твое.',p1t:'Замаглени лица',p1p:'На твојот телефон, уште пред да се испрати. Скриените податоци, и GPS, се бришат.',p2t:'„Сосед“',p2p:'Само тоа го гледаат другите. Твоето име и е-пошта никогаш не се прикажуваат.',p3t:'Без лозинка',p3p:'Мапата ја гледаш без сметка. За пријава, најави се со е-пошта и код од 6 цифри.',p4t:'Избриши кога сакаш',p4p:'Во Поставки. Пријавите остануваат на мапата, анонимно. Без реклами.',foot1:'Канта е независен проект на заедницата. Не е официјална апликација на Град Скопје, на општините ниту на некое јавно комунално претпријатие.',foot2:'Податоци за мапата © соработници на OpenStreetMap · Mapillary · ГИС портал на Град Скопје · OpenFreeMap.',
- say:{'big,ok':'Зелено: голем уличен контејнер без отворени пријави.','big,full':'Портокалово, со вреќи над капакот: пријавен како полн и потврден од сосед. Канта ти го покажува најблискиот со место.','big,broken':'Црвено, со пукнатина: оштетен или гори. Доволна е една пријава.','big,missing':'Испрекината, празна табла: соседите велат дека контејнерот го нема.','small,ok':'Жолто со темен цртеж: мала улична канта, за ситен отпад, не за вреќи.'}},
+ say:{'big,ok':'Зелено: голем уличен контејнер без отворени пријави.','big,full':'Портокалово, преполн над работ: пријавен како полн и потврден од сосед. Канта ти го покажува најблискиот со место.','big,broken':'Бордо, со паднат капак: оштетен или гори. Доволна е една пријава.','big,missing':'Испрекинат, празен круг: соседите велат дека контејнерот го нема.','small,ok':'Посветло зелено, тесен цртеж: мала улична канта, за ситен отпад, не за вреќи.'}},
 sq:{brand:'Kanta',brand2:'Kanta',eyebrow:'Shkup · çdo kosh dhe kontejner në një hartë',h1a:'Kontejner plot?',h1b:'20 sekonda.',lede:'Një foto, një prekje. Kanta gjen kontejnerin pranë të cilit qëndron, e vendos raportimin në hartë dhe të tregon më të afërtin me vend.',soon:'Së shpejti në Google Play',how:'Shih si funksionon','t-full':'PLOT','t-report':'RAPORTO','t-suggest':'PROPOZO',n1:'kosha dhe kontejnerë në hartë',n2:'komuna të Shkupit',n3:'nga fotoja te raportimi',n4:'gjuhë: MK · SQ · EN',e2:'Si funksionon',h2:'Vëre. Raportoje. Shih si rregullohet.',s1t:'Vëre një kontejner plot ose të dëmtuar',s1p:'Hap hartën. Çdo kontejner i qytetit është aty, me ngjyrën e gjendjes së tij.',s2t:'Raportoje për 20 sekonda',s2p:'Së pari kamera, tri prekje. Kur një fqinj e konfirmon, shenja ndryshon për të gjithë, edhe për qytetin.',s3t:'Shih si e rregullon qyteti',s3p:'Merr një njoftim të qetë „U rregullua!“ me foto para dhe pas kur zbrazet ose riparohet.',e3:'Lexo hartën',h3:'Një shenjë, një gjendje.','k-ok':'Në rregull','k-full':'Plot','k-broken':'I dëmtuar','k-missing':'Mungon','k-small':'Kosh rruge',e4:'Çfarë mund të bësh',f1t:'Gjej kontejnerin më të afërt me vend',f1p:'Deri në 600 m, me kohën në këmbë dhe udhëzime, sapo i yti është plot.',f2t:'Konfirmo atë që raportuan fqinjët',f2p:'„Edhe unë“ ose „Është zbrazur“. Harta mbetet e saktë sepse njerëzit e kontrollojnë.',f3t:'Propozo një kontejner të ri',f3p:'Shëno një vend ku Shkupit i duhet dhe voto për propozimet e të tjerëve.',f4t:'Hartëzo rrugën tënde',f4p:'Shto një kontejner që mungon në hartë ose shëno një që nuk është më.',f5t:'Statistikat e qytetit',f5p:'Sa shpejt i zgjidh problemet secila komunë. Të dhëna, jo faje.',f6t:'Punon edhe pa internet',f6p:'Nuk ka sinjal te kontejneri? Raportimi ruhet dhe dërgohet kur të kesh rrjet.',e5:'Privatësia së pari',h5:'Fotoja jote ndihmon. Emri yt mbetet i yti.',p1t:'Fytyra të turbulluara',p1p:'Në telefonin tënd, para se fotoja të dërgohet. Të dhënat e fshehura, edhe GPS, fshihen.',p2t:'„Një fqinj“',p2p:'Vetëm këtë e shohin të tjerët. Emri dhe email-i yt nuk shfaqen kurrë.',p3t:'Pa fjalëkalim',p3p:'Hartën e sheh pa llogari. Për të raportuar, hyr me email dhe një kod me 6 shifra.',p4t:'Fshije kur të duash',p4p:'Te Cilësimet. Raportimet mbeten në hartë, në mënyrë anonime. Pa reklama.',foot1:'Kanta është një projekt i pavarur i komunitetit. Nuk është aplikacion zyrtar i Qytetit të Shkupit, i komunave apo i ndonjë ndërmarrjeje publike komunale.',foot2:'Të dhënat e hartës © kontribuuesit e OpenStreetMap · Mapillary · Portali GIS i Qytetit të Shkupit · OpenFreeMap.',
- say:{'big,ok':'E gjelbër: kontejner i madh rruge pa raportime të hapura.','big,full':'Portokalli, me thasë mbi kapak: i raportuar plot dhe i konfirmuar nga një fqinj. Kanta të tregon më të afërtin me vend.','big,broken':'E kuqe, me të çarë: i dëmtuar ose po digjet. Mjafton një raportim.','big,missing':'Tabelë e zbrazët me vija: fqinjët thonë se kontejneri nuk është më.','small,ok':'E verdhë me vizatim të errët: kosh i vogël rruge, për mbeturina të vogla, jo për thasë.'}}
+ say:{'big,ok':'E gjelbër: kontejner i madh rruge pa raportime të hapura.','big,full':'Portokalli, i mbushur mbi buzë: i raportuar plot dhe i konfirmuar nga një fqinj. Kanta të tregon më të afërtin me vend.','big,broken':'Bordo, me kapak të rënë: i dëmtuar ose po digjet. Mjafton një raportim.','big,missing':'Rreth i zbrazët me vija: fqinjët thonë se kontejneri nuk është më.','small,ok':'E gjelbër më e çelët, vizatim i ngushtë: kosh i vogël rruge, për mbeturina të vogla, jo për thasë.'}}
 };
 let lang='en',sel='big,ok';
 function paint(){
