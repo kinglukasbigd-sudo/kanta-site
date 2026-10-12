@@ -7,7 +7,7 @@
 </head>
 <body>
 <title>Kanta Skopje</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@600;700;800&family=Sofia+Sans:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap">
 <style>
 /* Layout: soft, round, four colours. Sand page with dark-blue ink; three full-bleed bands in
    dark green, burgundy and dark blue; orange is the one thing that calls for a tap.
@@ -19,7 +19,7 @@
   --orange:#F26A1B; --green:#1F6B49; --burgundy:#8E1B3A; --blue:#14254A; --sand:#F6F2EB; --deep:#0E1A36;
   --ok:#1F6B49; --small:#43A070; --full:#F26A1B; --broken:#9B1D3F; --grey:#8A8F9C;
   --head:'Rubik',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
-  --text:'Sofia Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --text:'Rubik',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   --gutter:clamp(16px,4vw,56px); --soft:0 14px 36px rgba(14,26,54,.14);
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
@@ -33,12 +33,12 @@
   --map:#0C1630; --road:#1A294B; --road-2:#223358; --park:#0E2230; --blue:#070E20;
   --soft:0 14px 36px rgba(0,0,0,.4); color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font:500 17px/1.55 var(--text);-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--text);-webkit-font-smoothing:antialiased}
 a{color:inherit}
 h1,h2,h3,p,ul{margin:0;padding:0}
 .band{padding-inline:var(--gutter);padding-block:clamp(52px,8vw,108px)}
 .wrap{max-width:1180px;margin-inline:auto}
-.tag{display:flex;align-items:center;gap:10px;font:800 12px/1.3 var(--text);letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.tag{display:flex;align-items:center;gap:10px;font:700 12px/1.3 var(--text);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
 .tag::before{content:"";width:18px;height:7px;border-radius:99px;background:var(--orange);flex:none}
 .sign{font-family:var(--head);font-weight:800;letter-spacing:-.035em;text-wrap:balance}
 .display{font-size:clamp(46px,7.6vw,108px);line-height:1}
@@ -91,7 +91,7 @@ a.btn:hover{transform:translateY(-2px)}
 .nums div{padding:18px 20px 20px;display:grid;gap:6px;min-width:0}
 .nums div+div{border-left:1px solid var(--line)}
 .nums b{font:800 clamp(32px,4.4vw,58px)/1 var(--head);letter-spacing:-.035em;font-variant-numeric:tabular-nums}
-.nums span{font:800 12px/1.35 var(--text);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.nums span{font:700 12px/1.35 var(--text);letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
 
 /* how: three cards, a real sequence */
 .how .wrap,.feat .wrap,.priv .wrap{display:grid;gap:clamp(24px,3.6vw,44px)}
